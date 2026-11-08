@@ -1,0 +1,14 @@
+{{ $category := cond (eq .Params.categorie "dessin") "Dessin" "Sculpture" }}
+<article class="work-card">
+  <a class="work-card-link" href="{{ .RelPermalink }}">
+    <div class="work-card-media">
+      {{ partial "art-image.html" (dict "src" .Params.image "alt" (printf "%s — %s" .Title $category)) }}
+      <span class="work-card-view" aria-hidden="true">↗</span>
+    </div>
+    <div class="work-card-meta">
+      <div><span class="eyebrow">{{ $category }}{{ with .Params.annee }} · {{ . }}{{ end }}</span><h3>{{ .Title }}</h3></div>
+      <span class="work-card-arrow" aria-hidden="true">↗</span>
+    </div>
+    {{ with .Params.technique }}<p class="work-card-technique">{{ . }}</p>{{ end }}
+  </a>
+</article>

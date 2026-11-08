@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ $category := cond (eq .Params.categorie "dessin") "Dessin" "Sculpture" }}
+<div class="shell artwork-breadcrumb"><a href="{{ "/oeuvres/" | relURL }}">Toutes les œuvres</a><span aria-hidden="true">/</span><a href="{{ if eq .Params.categorie "dessin" }}{{ "/dessins/" | relURL }}{{ else }}{{ "/sculptures/" | relURL }}{{ end }}">{{ $category }}</a><span aria-hidden="true">/</span><span>{{ .Title }}</span></div>
+<section class="shell artwork-layout">
+  <div class="artwork-gallery">
+    <button class="artwork-main-image lightbox-trigger" type="button" data-lightbox-src="{{ partial "image-url.html" (dict "src" .Params.image "spec" "2400x2400 webp q88") }}" data-lightbox-alt="{{ .Title }} — vue principale" {{ if not .Params.image }}disabled{{ end }} aria-label="Agrandir la photographie principale">
+      {{ partial "art-image.html" (dict "src" .Params.image "alt" (printf "%s — vue principale" .Title) "loading" "eager") }}
+      {{ if .Params.image }}<span class="zoom-hint">⊕ Agrandir</span>{{ end }}
+    </button>
+    {{ with .Params.photos }}
+    <div class="artwork-extra-grid">
+      {{ range $index, $photo := . }}
+      <button class="artwork-extra-image lightbox-trigger" type="button" data-lightbox-src="{{ partial "image-url.html" (dict "src" $photo "spec" "2400x2400 webp q88") }}" data-lightbox-alt="{{ $.Title }} — vue {{ add $index 2 }}" aria-label="Agrandir la vue {{ add $index 2 }}">
+        {{ partial "art-image.html" (dict "src" $photo "alt" (printf "%s — vue %d" $.Title (add $index 2))) }}
+      </button>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+  <aside class="artwork-description"><p class="eyebrow">{{ $category }}{{ with .Params.annee }} / {{ . }}{{ end }}</p><h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <dl class="artwork-facts">
+      {{ with .Params.technique }}<div><dt>Matériaux / technique</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.dimensions }}<div><dt>Dimensions</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.annee }}<div><dt>Année</dt><dd>{{ . }}</dd></div>{{ end }}
+    </dl>
+    <a href="{{ "/contact/" | relURL }}" class="button button-dark">Poser une question sur cette œuvre <span aria-hidden="true">↗</span></a>
+    <a href="{{ "/oeuvres/" | relURL }}" class="back-link">← Retour à la galerie</a>
+  </aside>
+</section>
+<dialog class="lightbox" aria-label="Photographie agrandie"><form method="dialog"><button class="lightbox-close" aria-label="Fermer l'image" autofocus>✕</button></form><img src="" alt=""><p class="lightbox-caption"></p></dialog>
+{{ end }}

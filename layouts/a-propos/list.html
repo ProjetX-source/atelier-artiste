@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ $settings := .Site.Data.site }}
+<header class="shell page-heading"><p class="eyebrow">La personne derrière les œuvres</p><h1>À propos de <em>l'artiste</em></h1><p>Un parcours, un regard, une manière de créer.</p></header>
+<section class="shell about-layout">
+  <div class="about-portrait">
+    {{ if $settings.portrait }}{{ partial "art-image.html" (dict "src" $settings.portrait "alt" (printf "Portrait de %s" $settings.nom) "loading" "eager") }}{{ else }}<div class="portrait-placeholder"><span aria-hidden="true">◌</span><p>L'art et le temps<br>de regarder.</p></div>{{ end }}
+  </div>
+  <div class="about-text"><p class="eyebrow">Présentation</p><h2>{{ $settings.nom }}</h2><p>{{ $settings.biographie }}</p>
+    <hr><p class="eyebrow">Démarche artistique</p><p>{{ $settings.demarche }}</p>
+    {{ with $settings.ville }}<p class="about-location">Lieu de création : {{ . }}</p>{{ end }}
+    <a class="button button-dark" href="{{ "/contact/" | relURL }}">Prendre contact <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,127 @@
+# Pages CMS : https://app.pagescms.org/
+# À installer sur le dépôt GitHub, sans base de données ni serveur CMS.
+media:
+  input: assets/uploads
+  output: /uploads
+  rename: safe
+  categories: [image]
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: oeuvres
+    label: "Œuvres : sculptures et dessins"
+    type: collection
+    path: content/oeuvres
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    exclude: ["_index.md"]
+    view:
+      primary: title
+      fields: [title, categorie, annee, mise_en_avant, draft]
+      sort: [title, annee]
+      search: [title, technique, dimensions]
+      default:
+        sort: title
+        order: asc
+    fields:
+      - name: title
+        label: "Titre de l'œuvre"
+        type: string
+        required: true
+      - name: categorie
+        label: "Catégorie"
+        type: select
+        required: true
+        options:
+          values:
+            - name: sculpture
+              label: "Sculpture"
+            - name: dessin
+              label: "Dessin"
+      - name: image
+        label: "Photo principale (obligatoire)"
+        type: image
+        required: true
+        description: "Choisir une photographie nette, idéalement de 1400 à 2500 pixels de large."
+      - name: photos
+        label: "Autres vues de l'œuvre (facultatif)"
+        type: image
+        description: "Détails et autres angles : jusqu'à 12 photos."
+        options:
+          multiple:
+            max: 12
+          unique: true
+      - name: annee
+        label: "Année de réalisation"
+        type: string
+        description: "Exemple : 2025, ou 2023–2025."
+      - name: technique
+        label: "Matériaux / technique"
+        type: string
+        description: "Exemple : terre cuite, bronze, fusain sur papier."
+      - name: dimensions
+        label: "Dimensions"
+        type: string
+        description: "Exemple : 40 × 25 × 20 cm."
+      - name: mise_en_avant
+        label: "Afficher sur la page d'accueil"
+        type: boolean
+        default: false
+      - name: draft
+        label: "Brouillon (ne pas publier)"
+        type: boolean
+        default: false
+      - name: body
+        label: "Description de l'œuvre"
+        type: rich-text
+        description: "Parlez de l'inspiration, de la matière ou de l'histoire de la pièce."
+        options:
+          media: false
+
+  - name: identite
+    label: "Textes, artiste et coordonnées"
+    type: file
+    path: data/site.yaml
+    format: yaml
+    operations:
+      delete: false
+      rename: false
+    fields:
+      - name: nom
+        label: "Nom de l'artiste (sur tout le site)"
+        type: string
+        required: true
+      - name: sous_titre
+        label: "Sous-titre du site"
+        type: string
+      - name: accroche
+        label: "Grande phrase d'accueil"
+        type: text
+      - name: accueil_texte
+        label: "Texte court sous la phrase d'accueil"
+        type: text
+      - name: introduction
+        label: "Présentation courte de la démarche"
+        type: text
+      - name: portrait
+        label: "Photo de l'artiste (facultative)"
+        type: image
+      - name: biographie
+        label: "Biographie / parcours"
+        type: text
+      - name: demarche
+        label: "Démarche artistique"
+        type: text
+      - name: ville
+        label: "Ville / région (facultatif)"
+        type: string
+      - name: email
+        label: "Adresse e-mail publique (facultative)"
+        type: string
+      - name: instagram
+        label: "Adresse Instagram complète (facultative)"
+        type: string
+        description: "Exemple : https://www.instagram.com/nom_du_compte/"
+      - name: contact_texte
+        label: "Texte d'introduction sur la page contact"
+        type: text

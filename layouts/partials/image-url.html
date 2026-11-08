@@ -1,0 +1,12 @@
+{{- $src := .src | default "" -}}
+{{- $spec := .spec | default "1600x1600 webp q82" -}}
+{{- $image := false -}}
+{{- if $src -}}
+  {{- $image = resources.Get (strings.TrimPrefix "/" $src) -}}
+{{- end -}}
+{{- if $image -}}
+  {{- $processed := $image.Fit $spec -}}
+  {{- $processed.RelPermalink -}}
+{{- else if $src -}}
+  {{- $src | relURL -}}
+{{- end -}}

@@ -1,0 +1,15 @@
+{{- $src := .src | default "" -}}
+{{- $alt := .alt | default "Image d'une œuvre" -}}
+{{- $class := .class | default "art-image" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- if $src -}}
+  {{- $image := resources.Get (strings.TrimPrefix "/" $src) -}}
+  {{- if $image -}}
+    {{- $processed := $image.Fit "1600x1600 webp q82" -}}
+    <img class="{{ $class }}" src="{{ $processed.RelPermalink }}" alt="{{ $alt }}" width="{{ $processed.Width }}" height="{{ $processed.Height }}" loading="{{ $loading }}" decoding="async">
+  {{- else -}}
+    <img class="{{ $class }}" src="{{ $src | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async">
+  {{- end -}}
+{{- else -}}
+  <div class="image-empty" role="img" aria-label="Photographie à venir"><span aria-hidden="true">✳</span><small>Photographie à venir</small></div>
+{{- end -}}

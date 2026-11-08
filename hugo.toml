@@ -1,0 +1,15 @@
+baseURL = 'https://example.org/'
+languageCode = 'fr-FR'
+title = "Atelier — Sculptures & dessins"
+defaultContentLanguage = 'fr'
+enableRobotsTXT = true
+summaryLength = 30
+
+[params]
+  description = "Un espace consacré à la sculpture, au dessin et aux recherches plastiques."
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[outputs]
+  home = ['HTML', 'RSS']

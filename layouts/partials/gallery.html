@@ -1,0 +1,11 @@
+{{ $pages := .pages }}
+{{ if gt (len $pages) 0 }}
+  <div class="work-grid">
+    {{ range $pages }}{{ partial "work-card.html" . }}{{ end }}
+  </div>
+{{ else }}
+  <div class="empty-works">
+    <div class="empty-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div><p class="eyebrow">L'atelier se prépare</p><h2>Les œuvres arrivent bientôt.</h2><p>Les sculptures et les dessins seront présentés ici, au fil des créations.</p></div>
+  </div>
+{{ end }}

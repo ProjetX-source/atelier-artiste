@@ -1,0 +1,21 @@
+{{ $settings := .Site.Data.site }}
+{{ $name := $settings.nom | default "Atelier" }}
+{{ $description := .Description | default $settings.introduction | default .Site.Params.description }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f5f1e9">
+<meta name="description" content="{{ $description }}">
+{{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="{{ $name }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ $name }} — {{ $settings.sous_titre }}{{ else }}{{ .Title }} — {{ $name }}{{ end }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="{{ "images/symbole.svg" | relURL }}" type="image/svg+xml">
+<title>{{ if .IsHome }}{{ $name }} — {{ $settings.sous_titre }}{{ else }}{{ .Title }} — {{ $name }}{{ end }}</title>
+{{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="Fil des œuvres" href="{{ .RelPermalink }}">{{ end }}
+{{ $css := resources.Get "css/style.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

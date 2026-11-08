@@ -1,0 +1,34 @@
+{{ define "main" }}
+{{ $settings := .Site.Data.site }}
+<section class="hero shell">
+  <div class="hero-copy">
+    <p class="eyebrow hero-eyebrow"><span class="fine-rule"></span> Atelier d'artiste · Sculptures & dessins</p>
+    <h1>{{ $settings.accroche | default "La matière, le geste et le trait." }}</h1>
+    <p class="hero-intro">{{ $settings.accueil_texte | default "Un espace pour découvrir des formes et des dessins." }}</p>
+    <div class="hero-actions"><a class="button button-dark" href="{{ "/oeuvres/" | relURL }}">Découvrir les œuvres <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ "/a-propos/" | relURL }}">Rencontrer l'artiste <span aria-hidden="true">↗</span></a></div>
+    <div class="hero-bottom"><span class="dot" aria-hidden="true"></span> Une invitation à regarder autrement</div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><img src="{{ "images/hero-abstrait.svg" | relURL }}" alt=""><span class="art-caption">Études de formes · Composition graphique</span></div>
+</section>
+<section class="section works-section">
+  <div class="shell">
+    <div class="section-heading"><div><p class="eyebrow">Portfolio</p><h2>Les œuvres <span class="serif-italic">à découvrir</span></h2></div><a class="text-link" href="{{ "/oeuvres/" | relURL }}">Voir toute la galerie <span aria-hidden="true">↗</span></a></div>
+    {{ $works := where .Site.RegularPages "Section" "oeuvres" }}
+    {{ $featured := first 3 (where $works "Params.mise_en_avant" true) }}
+    {{ if gt (len $featured) 0 }}
+      {{ partial "gallery.html" (dict "pages" $featured) }}
+    {{ else }}
+      {{ $recent := first 3 $works }}
+      {{ partial "gallery.html" (dict "pages" $recent) }}
+    {{ end }}
+  </div>
+</section>
+<section class="statement-band">
+  <div class="shell statement-inner"><p class="eyebrow">Démarche</p><blockquote>« {{ $settings.introduction | default "Un espace pour observer la matière, la ligne et la forme." }} »</blockquote><a href="{{ "/a-propos/" | relURL }}" class="text-link">En savoir plus sur l'artiste <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="shell category-section">
+  <div class="category-card category-sculpture"><span class="eyebrow">01 / La matière</span><div><h2>Sculptures</h2><p>Volumes, reliefs et recherches de formes.</p><a href="{{ "/sculptures/" | relURL }}" class="round-link" aria-label="Découvrir les sculptures">↗</a></div></div>
+  <div class="category-card category-dessin"><span class="eyebrow">02 / La ligne</span><div><h2>Dessins</h2><p>Traces, gestes et explorations sur papier.</p><a href="{{ "/dessins/" | relURL }}" class="round-link" aria-label="Découvrir les dessins">↗</a></div></div>
+</section>
+<section class="shell contact-invite"><p class="eyebrow">Entrons en contact</p><h2>Une question, une exposition,<br><em>une rencontre ?</em></h2><a href="{{ "/contact/" | relURL }}" class="button button-dark">Écrire à l'artiste <span aria-hidden="true">↗</span></a></section>
+{{ end }}

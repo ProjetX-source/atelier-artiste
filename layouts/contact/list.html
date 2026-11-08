@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{ $settings := .Site.Data.site }}
+<header class="shell page-heading"><p class="eyebrow">Une conversation commence ici</p><h1>Écrivons-nous<span class="accent-dot">.</span></h1><p>{{ $settings.contact_texte }}</p></header>
+<section class="shell contact-layout">
+  <div class="contact-details"><p class="eyebrow">Coordonnées</p><h2>Un mot, une idée, une question&nbsp;?</h2><p>Vous pouvez également retrouver l'artiste ici.</p>
+    {{ with $settings.email }}<div class="contact-method"><span>E-mail</span><a href="mailto:{{ . }}">{{ . }} ↗</a></div>{{ end }}
+    {{ with $settings.instagram }}<div class="contact-method"><span>Instagram</span><a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">Voir le compte ↗</a></div>{{ end }}
+    {{ with $settings.ville }}<div class="contact-method"><span>Localisation</span><strong>{{ . }}</strong></div>{{ end }}
+    <p class="contact-note">Les œuvres et les photographies de ce site restent la propriété de l'artiste.</p>
+  </div>
+  <div class="contact-form-wrap"><p class="eyebrow">Formulaire de contact</p><h2>Laissez un message</h2>
+    <form name="contact" method="POST" action="{{ "/merci/" | relURL }}" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hidden-field"><label>Ne pas remplir : <input name="bot-field"></label></p>
+      <div class="form-row"><div><label for="nom">Votre nom *</label><input id="nom" name="nom" autocomplete="name" required maxlength="100" placeholder="Votre nom"></div><div><label for="email">Votre e-mail *</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="160" placeholder="vous@exemple.fr"></div></div>
+      <label for="sujet">Sujet</label><select id="sujet" name="sujet"><option value="Question">Question générale</option><option value="Œuvre">À propos d'une œuvre</option><option value="Exposition">Exposition ou collaboration</option><option value="Autre">Autre</option></select>
+      <label for="message">Votre message *</label><textarea id="message" name="message" rows="6" required minlength="10" maxlength="5000" placeholder="Votre message..."></textarea>
+      <button type="submit" class="button button-dark">Envoyer mon message <span aria-hidden="true">↗</span></button>
+      <p class="privacy-note">Ce formulaire fonctionne après publication du site sur Netlify et activation de Netlify Forms. Les informations communiquées servent uniquement à répondre à votre message.</p>
+    </form>
+  </div>
+</section>
+{{ end }}

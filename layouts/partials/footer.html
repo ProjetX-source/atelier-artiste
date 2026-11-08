@@ -1,0 +1,19 @@
+{{ $settings := .Site.Data.site }}
+<footer class="site-footer">
+  <div class="shell footer-main">
+    <div>
+      <p class="footer-logo">{{ $settings.nom | default "Atelier" }}</p>
+      <p>{{ $settings.sous_titre | default "Sculptures & dessins" }}</p>
+    </div>
+    <div class="footer-links">
+      <a href="{{ "/oeuvres/" | relURL }}">Les œuvres</a>
+      <a href="{{ "/a-propos/" | relURL }}">L'artiste</a>
+      <a href="{{ "/contact/" | relURL }}">Contact</a>
+      {{ with $settings.instagram }}<a href="{{ . | safeURL }}" rel="noopener noreferrer" target="_blank">Instagram ↗</a>{{ end }}
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>© {{ now.Year }} {{ $settings.nom | default "L'artiste" }} · Tous droits réservés sur les œuvres.</span>
+    <a href="{{ "/admin/" | relURL }}" rel="nofollow">Espace artiste</a>
+  </div>
+</footer>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  {{ partial "header.html" . }}
+  <main id="contenu">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ $js := resources.Get "js/site.js" | minify | fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+</body>
+</html>

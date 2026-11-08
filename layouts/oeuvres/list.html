@@ -1,0 +1,8 @@
+{{ define "main" }}
+<header class="shell page-heading"><p class="eyebrow">Portfolio / Toutes les créations</p><h1>Toutes les <em>œuvres</em></h1><p>Les sculptures et les dessins, réunis dans une même galerie.</p></header>
+<section class="shell listing-section">
+  <div class="gallery-nav"><span>Explorer la collection</span><div class="gallery-tags"><a class="active" href="{{ "/oeuvres/" | relURL }}" aria-current="page">Toutes</a><a href="{{ "/sculptures/" | relURL }}">Sculptures</a><a href="{{ "/dessins/" | relURL }}">Dessins</a></div></div>
+  {{ $works := where .Site.RegularPages "Section" "oeuvres" }}
+  {{ partial "gallery.html" (dict "pages" $works) }}
+</section>
+{{ end }}

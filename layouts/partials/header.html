@@ -1,0 +1,17 @@
+{{ $settings := .Site.Data.site }}
+<header class="site-header">
+  <div class="shell header-inner">
+    <a href="{{ "/" | relURL }}" class="brand" aria-label="Accueil — {{ $settings.nom }}">
+      <span class="brand-symbol" aria-hidden="true">◌</span>
+      <span class="brand-type"><strong>{{ $settings.nom | default "Atelier" }}</strong><small>{{ $settings.sous_titre | default "Sculptures & dessins" }}</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Ouvrir le menu"><span></span><span></span></button>
+    <nav class="site-nav" id="navigation" aria-label="Navigation principale">
+      <a href="{{ "/oeuvres/" | relURL }}" {{ if eq .RelPermalink ("/oeuvres/" | relURL) }}aria-current="page"{{ end }}>Toutes les œuvres</a>
+      <a href="{{ "/sculptures/" | relURL }}" {{ if eq .RelPermalink ("/sculptures/" | relURL) }}aria-current="page"{{ end }}>Sculptures</a>
+      <a href="{{ "/dessins/" | relURL }}" {{ if eq .RelPermalink ("/dessins/" | relURL) }}aria-current="page"{{ end }}>Dessins</a>
+      <a href="{{ "/a-propos/" | relURL }}" {{ if eq .RelPermalink ("/a-propos/" | relURL) }}aria-current="page"{{ end }}>À propos</a>
+      <a class="nav-contact" href="{{ "/contact/" | relURL }}" {{ if eq .RelPermalink ("/contact/" | relURL) }}aria-current="page"{{ end }}>Contact <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>

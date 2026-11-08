@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 850" role="img" aria-label="Composition décorative de formes sculpturales abstraites">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9d4c9"/><stop offset="1" stop-color="#c8c2b4"/></linearGradient>
+<linearGradient id="stone" x1="0" x2="1" y1="0" y2="0.35"><stop stop-color="#8f8e82"/><stop offset="0.33" stop-color="#b4b5a7"/><stop offset=".65" stop-color="#d6d6c8"/><stop offset="1" stop-color="#777c74"/></linearGradient>
+<linearGradient id="clay" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d3b099"/><stop offset=".43" stop-color="#b47560"/><stop offset="1" stop-color="#805443"/></linearGradient>
+<radialGradient id="light" cx=".58" cy=".2" r=".8"><stop stop-color="#f1e9db" stop-opacity=".55"/><stop offset="1" stop-color="#a8a69b" stop-opacity=".1"/></radialGradient>
+<filter id="shadow"><feGaussianBlur stdDeviation="20"/></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="1"/></filter>
+<pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1" cy="2" r=".5" fill="#222" opacity=".07"/><circle cx="5" cy="5" r=".3" fill="#fff" opacity=".22"/></pattern>
+</defs>
+<rect width="700" height="850" fill="url(#bg)"/><rect width="700" height="850" fill="url(#light)"/>
+<path d="M0 665C178 624 342 631 700 650V850H0Z" fill="#bcb6aa" opacity=".62"/>
+<ellipse cx="387" cy="690" rx="235" ry="43" fill="#504c48" opacity=".28" filter="url(#shadow)"/>
+<path d="M198 649C191 573 191 521 215 451C246 360 276 290 274 202C271 118 309 77 352 74C403 70 427 114 427 177C427 231 404 293 424 340C456 408 536 421 546 502C553 557 519 622 488 661C455 695 223 689 198 649Z" fill="url(#stone)"/>
+<path d="M275 241C290 174 281 99 340 82C295 114 343 211 315 315C305 374 259 458 255 568C241 505 235 434 250 355C263 306 264 285 275 241Z" fill="#eee9de" opacity=".3"/>
+<path d="M211 454C260 430 330 442 370 480C388 501 393 531 408 557C432 594 489 596 523 573C516 614 485 653 468 661C434 680 252 682 224 647C214 589 210 526 211 454Z" fill="#686e65" opacity=".23"/>
+<path d="M211 669C199 610 214 547 237 494C254 456 304 415 358 422C437 433 483 492 475 553C469 598 420 628 377 641C334 654 269 674 211 669Z" fill="url(#clay)"/>
+<path d="M248 481C286 442 333 438 378 447C329 435 281 485 262 533C246 573 253 629 267 654C233 612 226 536 248 481Z" fill="#efc7af" opacity=".35"/>
+<path d="M375 434C455 437 487 494 471 565C454 597 416 619 387 622C433 592 450 541 437 495C427 458 403 445 375 434Z" fill="#673e34" opacity=".28"/>
+<path d="M231 666C282 681 432 680 489 651" stroke="#6b635a" stroke-width="2" opacity=".26" fill="none"/>
+<g opacity=".3"><path d="M575 112Q625 168 618 231Q616 276 572 312" stroke="#69695c" stroke-width="1.5" fill="none"/><path d="M580 114Q640 156 645 222" stroke="#69695c" stroke-width=".9" fill="none"/></g>
+<rect width="700" height="850" fill="url(#grain)" opacity=".38"/>
+</svg>
